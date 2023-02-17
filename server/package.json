@@ -1,0 +1,21 @@
+{
+  "name": "task-fuel",
+  "version": "1.0.0",
+  "description": "application to create and organize tasks",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "keywords": [
+    "to-do-app",
+    "task"
+  ],
+  "author": "Grzegorz Piluk",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
+  }
+}
