@@ -1,0 +1,65 @@
+.Login, .Register {
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .Login--main, .Register--main {
+        width: 50vw;
+        height: 60vh;
+        background-color: var(--white);
+        color: var(--gray);
+        border-radius: 20px;
+        display: flex;
+        justify-content: space-between;
+        overflow: hidden;
+
+        form {
+            width: 80%;
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            button {
+                border: none;
+                color: white;
+                background-color: #0e8aec;
+                border-radius: 10px;
+                padding: 10px;
+                cursor: pointer;
+                font-size: medium;
+                transition: all 0.3s;
+
+                &:hover {
+                    background-color: #0d81da;
+                }
+            }
+        }
+
+        .FormSection1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            row-gap: 5vh;
+
+            svg {
+                width: 200px;
+                height: auto;
+            }
+        }
+
+        .FormSection2 {
+            padding: 1vw;
+        }
+
+        .FormSection1, .FormSection2 {
+            width: 50%;
+        }
+
+    }
+}
