@@ -1,6 +1,10 @@
 import express, { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import { getDataPost } from '../db/database';
+import authenticationJwtToken from '../middleware/authenticationJwtToken';
+import generateJWT from '../middleware/jwtToken';
+
+const token = generateJWT({ id: 123, name: 'John Doe' });
 
 const loginRouter = express.Router();
 
@@ -27,6 +31,12 @@ loginRouter.post('/', async (req: Request, res: Response) => {
     const user = users[0];
     const match = await bcrypt.compare(password, user.password);
     if (!match) return res.status(401).send('Invalid password');
+
+    const decodedToken = authenticationJwtToken(token, process.env.ACCESS_TOKEN_SECRET as string);
+
+    if (decodedToken) console.log(decodedToken);
+    else console.log('Invalid token');
+    
     
     res.redirect('/api/dashboard');
   } catch (err) {
