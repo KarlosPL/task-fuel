@@ -1,8 +1,14 @@
 import React from 'react';
+import HelloPage from '../components/Dashboard/HelloPage';
+import Sidebar from '../components/Sidebar/Sidebar';
+import '../assets/styles/pages/Home.scss';
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
-    <div>Home</div>
+    <div className='Home flex'>
+      <Sidebar />
+      <HelloPage />
+    </div>
   )
 }
 

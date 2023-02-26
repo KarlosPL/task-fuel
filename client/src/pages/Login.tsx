@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Field from '../components/Forms/Field';
 import Header from '../components/Forms/Header';
 import SubmitButton from '../components/Forms/SubmitButton';
@@ -8,6 +8,7 @@ import Redirect from '../components/Forms/Redirect';
 import '../assets/styles/pages/LoginAndRegister.scss';
 import { useNavigate } from 'react-router-dom';
 import background from "../assets/images/landscape1.jpg";
+import DisplayError from '../services/utils/DisplayError';
 import axios from 'axios';
 
 interface LoginValues {
@@ -41,15 +42,11 @@ const Login: React.FC = () => {
         const data = await response.data;
         setError(data.message);
       }
-    } catch (error) {
-      console.log('Error logging:', error);
-      setError('An error occurred while logging');
+    } catch (error: any) {
+      if (error.response.data) setError(error.response.data.message);
+      else setError('An error occured while registering');
     }
   };
-
-  useEffect(() => {
-    if (error) console.log(error);
-  }, [error]);
 
   return (
     <div className="Login" style={{ backgroundImage: `url(${background})`}}>
@@ -77,6 +74,7 @@ const Login: React.FC = () => {
               placeholder="Type your password"
               onChange={handleInputChange}
             />
+            <DisplayError error={error} />
             <SubmitButton label="Login" />
           </form>
         </Section>
