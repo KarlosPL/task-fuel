@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Field from '../components/Forms/Field';
 import Header from '../components/Forms/Header';
 import SubmitButton from '../components/Forms/SubmitButton';
@@ -8,6 +8,7 @@ import Redirect from '../components/Forms/Redirect';
 import { useNavigate } from 'react-router-dom';
 import '../assets/styles/pages/LoginAndRegister.scss';
 import background from '../assets/images/landscape2.jpg';
+import DisplayError from '../services/utils/DisplayError';
 import axios from 'axios';
 
 interface RegisterValues {
@@ -17,7 +18,7 @@ interface RegisterValues {
   repeatPassword: string;
 }
 
-const Register = () => {
+const Register: React.FC = () => {
   const navigate = useNavigate();
 
   const [registerValues, setRegisterValues] = useState<RegisterValues>({
@@ -44,21 +45,16 @@ const Register = () => {
     try {
       const response = await axios.post('/api/register', registerValues, { responseType: 'json' });
       if (response.status >= 200 && response.status < 300) {
-        console.log('Registration successful');
         navigate('/login');
       } else {
         const data = await response.data;
         setError(data.message);
       }
-    } catch (error) {
-      console.log('Error registering:', error);
-      setError('An error occurred while registering');
+    } catch (error: any) {
+      if (error.response.data) setError(error.response.data.message);
+      else setError('An error occured while registering');
     }
   };
-
-  useEffect(() => {
-    if (error) console.log(error);
-  }, [error]);
 
   return (
     <div className="Register" style={{ backgroundImage: `url(${background})` }}>
@@ -69,7 +65,7 @@ const Register = () => {
         </Section>
         <Section id={2}>
           <form
-            className="gap-y-6"
+            className="gap-y-4"
             onSubmit={handleRegister}
             autoComplete="off"
           >
@@ -106,6 +102,7 @@ const Register = () => {
               placeholder="Repeat your password"
               onChange={handleInputChange}
             />
+            <DisplayError error={error} />
             <SubmitButton label="Register" />
           </form>
         </Section>
