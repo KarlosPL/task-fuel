@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import { port } from './config';
 
 // Routes
@@ -9,7 +9,7 @@ import registerRouter from './routes/register';
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/dashboard', homeRouter);
 app.use('/api/login', loginRouter);
