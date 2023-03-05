@@ -1,19 +1,23 @@
+import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
-interface DecodedToken {
-  [key: string]: any;
-}
+export default function authenticateJwtToken ( req: Request, res: Response, next: NextFunction ): any {
+  const token = process.env.ACCESS_TOKEN_SECRET as string;
+  
+  const authorizationHeader = req.headers['authorization'];
+  const reqToken = authorizationHeader && authorizationHeader.split(' ')[1] as string;
 
-export default function authenticateJwtToken (
-  token: string,
-  secret: string
-): DecodedToken | null {
-  if (!token || !secret) throw new Error('Nie podano wymaganych parametrów');
-  try {
-    const decoded = jwt.verify(token, secret);
-    return decoded as DecodedToken;
-  } catch (err) {
-    console.error(`Failed to authenticate JWT token: ${err}`);
-    return null;
-  }
+  if (!token || !reqToken) return res.status(401).json({ message: 'Required parameters are not given', success: false });
+
+  jwt.verify(reqToken, token, (err, user) => {
+    if (err) return res.status(401).json({ success: false, errorContent: `Failed to authenticate JWT token: ${err}` });
+    (req as any).user = user;
+    next();
+  });
+
+  // const decoded = jwt.verify(reqToken, token);
+  // console.log(`Success to authenticate JWT token: ${decoded}`);
+  // next();
+  // console.error(`Failed to authenticate JWT token: ${err}`);
+  // return res.status(401).json({ message: 'Failed to authenticate JWT token: ${err}', success: false });
 }

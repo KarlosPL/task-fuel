@@ -6,7 +6,7 @@ import Section from '../components/Forms/Section';
 import { RiShieldUserFill } from 'react-icons/ri';
 import Redirect from '../components/Forms/Redirect';
 import '../assets/styles/pages/LoginAndRegister.scss';
-import { useNavigate } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 import background from "../assets/images/landscape1.jpg";
 import DisplayError from '../services/utils/DisplayError';
 import axios from 'axios';
@@ -22,7 +22,7 @@ const Login: React.FC = () => {
     password: '',
   });
 
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
 
   const [error, setError] = useState<any | null>(null);
 
@@ -36,7 +36,8 @@ const Login: React.FC = () => {
 
     try {
       const response = await axios.post('/api/login', loginValues, { responseType: 'json' });
-      if (response.status >= 200 && response.status < 300) {
+      if (response.data.success) {
+        localStorage.setItem('authorizationToken', response.data.authorizationToken);
         navigate('/dashboard');
       } else {
         const data = await response.data;
@@ -44,7 +45,7 @@ const Login: React.FC = () => {
       }
     } catch (error: any) {
       if (error.response.data) setError(error.response.data.message);
-      else setError('An error occured while registering');
+      else setError('An error occured while logging');
     }
   };
 
