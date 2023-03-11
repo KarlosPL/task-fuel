@@ -14,10 +14,4 @@ export default function authenticateJwtToken ( req: Request, res: Response, next
     (req as any).user = user;
     next();
   });
-
-  // const decoded = jwt.verify(reqToken, token);
-  // console.log(`Success to authenticate JWT token: ${decoded}`);
-  // next();
-  // console.error(`Failed to authenticate JWT token: ${err}`);
-  // return res.status(401).json({ message: 'Failed to authenticate JWT token: ${err}', success: false });
 }

@@ -14,8 +14,8 @@ interface User {
 }
 
 async function addDefaultTaskValues(userId: string) {
-  const query = `INSERT INTO tasks (taskId, task_name, description, date_created, deadline, status, priority, category, tags, reminder, isImportant, userID)
-                 VALUES (?, '', '', NOW(), NULL, 'To Do', 'Normal', '', '', NULL, FALSE, ?)`;
+  const query = `INSERT INTO tasks (taskId, task_name, description, date_created, deadline, status, priority, tags, reminder, isImportant, userID)
+                 VALUES (?, '', '', NOW(), NULL, 'To Do', 'Normal', '', NULL, FALSE, ?)`;
   const values = [uniqid(), userId];
   try {
     await getDataPost(query, values);

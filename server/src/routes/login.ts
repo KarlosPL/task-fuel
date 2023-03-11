@@ -14,10 +14,7 @@ loginRouter.post('/', async (req: Request, res: Response) => {
   const { email, password }: User = req.body;
   
   if (!(email && password))
-    return res
-    .status(400)
-    .json({ mesage: 'Please fill all inputs to log in', success: false });
-    
+    return res.status(400).json({ mesage: 'Please fill all inputs to log in', success: false });
   try {
     const users = await getDataPost('SELECT * FROM users WHERE email = ?', [email]);
 
@@ -32,7 +29,6 @@ loginRouter.post('/', async (req: Request, res: Response) => {
     
     res.cookie('token', token, {
       httpOnly: true,
-      // secure: true, 
       sameSite: 'strict',
       expires: new Date(Date.now() + 24 * 60 * 60 * 1000)
     });
@@ -43,6 +39,7 @@ loginRouter.post('/', async (req: Request, res: Response) => {
       userData: { id: users[0].id, username: users[0].username, email: users[0].email },
       authorizationToken: token,
     });
+    
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal server error');

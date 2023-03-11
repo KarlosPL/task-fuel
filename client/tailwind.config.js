@@ -4,6 +4,14 @@ module.exports = {
   presets: [],
   darkMode: 'media', // or 'class'
   theme: {
+    extend: {
+      width: {
+        '15vw': '15vw',
+      },
+      margin: {
+        '1px': '-1px'
+      }
+    },
     accentColor: ({ theme }) => ({
       ...theme('colors'),
       auto: 'auto',

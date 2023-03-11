@@ -33,7 +33,7 @@ const Sidebar: React.FC = () => {
       <IconContext.Provider value={{ color: 'white' }}>
         <MenuItem logo icon={<RiListSettingsFill />} />
         <div className="sidebar-menu-collapse">
-          <MenuItem label="Tasks" icon={<RiTaskFill />} isExpanded={isExpanded} />
+          <MenuItem label="Today" icon={<RiTaskFill />} isExpanded={isExpanded} />
 
           <Submenu title="Calendar" icon={<RiCalendarTodoFill /> } isExpanded={isExpanded}>
             <MenuItem label="Monthly View" isSubmenu />

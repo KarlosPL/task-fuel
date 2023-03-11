@@ -30,7 +30,7 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div className='Home flex'>
+    <div className='Home flex bg-zinc-200'>
       <Sidebar />
       <HelloPage />
     </div>

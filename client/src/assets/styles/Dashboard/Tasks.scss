@@ -1,0 +1,79 @@
+.Tasks {
+    width: 100%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    
+    .TasksHeader {
+        width: 100%;
+        padding: 10px;
+
+        .add-task {
+            transition: all 0.2s;
+            cursor: pointer;
+
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+    }
+    
+    .TasksContent {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(max-content, 10vw));
+        grid-template-rows: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .Task {
+        width: 15vw;
+        height: 25vh;
+
+        user-select: none;
+
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: max-content 1fr max-content max-content max-content;
+        grid-template-areas: "status status important"
+                             "title title title"
+                             "deadline deadline deadline"
+                             "m_as_done m_as_deleted m_as_important"
+                             "show_details show_details show_details";
+        row-gap: 5px;
+
+        #status { grid-area: status; }
+        #important { grid-area: important; place-self: end; align-self: center; }
+        #task_name { grid-area: title; }
+        #deadline { grid-area: deadline;  }
+
+        button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2px;
+            margin: 0 2px;
+            background: none;
+            border: 2px solid rgb(29, 78, 216);
+            color: rgb(29, 78, 216);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+
+            svg {
+                width: 18px;
+                height: auto;
+            }
+
+            &:hover {
+                background-color: rgba(29, 78, 216, 0.9);
+                color: rgb(233, 233, 233);
+            }
+        }
+
+        #mark_as_done { grid-area: m_as_done; }
+        #mark_as_deleted { grid-area: m_as_deleted; }
+        #mark_as_important { grid-area: m_as_important; }
+        #show_details {grid-area: show_details;}
+    }
+}

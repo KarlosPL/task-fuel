@@ -8,7 +8,6 @@ interface Task {
   deadline: string;
   status: 'To do' | 'In progress' | 'Completed';
   priority: 'low' | 'normal' | 'high' | 'critical';
-  category: string;
   tags: string[];
   reminder: string;
   isImportant: boolean;
