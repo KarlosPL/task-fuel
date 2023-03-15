@@ -42,7 +42,7 @@ const TaskDetails: React.FC<DisplayTaskProp> = ({ task }) => {
       className={
         'TaskDetail task_' +
         task.taskId +
-        '_details bg-slate-100 flex flex-col absolute m-1px -bottom-full border rounded-b-lg border-t-2 border-t-sky-600 border-gray-500 border-solid w-15vw p-6 min-h-full'
+        '_details bg-slate-100 z-10 flex flex-col absolute m-1px -bottom-full border rounded-b-lg border-t-2 border-t-sky-600 border-gray-500 border-solid w-15vw p-6 min-h-full'
       }
     >
       <h3 id="priority_and_description" className='my-3 flex gap-x-2'>{priority(task.priority)} {task.description}</h3>

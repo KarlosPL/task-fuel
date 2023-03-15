@@ -1,0 +1,47 @@
+.AddTaskForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: rgb(241, 245, 249);
+  padding: 1rem 2rem;
+  position: fixed;
+  right: 10vw;
+}
+
+
+input,
+textarea,
+select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+input[type='checkbox'] {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0069d9;
+  }
+}
+
+.important-collapse {
+    display: flex;
+    align-items: center;
+    column-gap: 5rem;
+    padding: 1rem 0;
+}

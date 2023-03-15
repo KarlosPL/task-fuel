@@ -10,7 +10,9 @@ import {
   RiCheckDoubleFill,
   RiDeleteBin6Fill,
   RiSettings3Fill,
+  RiLogoutBoxRLine
 } from 'react-icons/ri';
+import logout from './Logout';
 import '../../assets/styles/Sidebar/Sidebar.scss';
 
 const Sidebar: React.FC = () => {
@@ -46,7 +48,10 @@ const Sidebar: React.FC = () => {
           <MenuItem label="Rubbish bin" icon={<RiDeleteBin6Fill />} isExpanded={isExpanded} />
         </div>
 
-        <MenuItem label="Settings" icon={<RiSettings3Fill />} isExpanded={isExpanded} />
+        <div className="sidebar-footer-collapse flex flex-col gap-y-1">
+          <MenuItem label="Settings" icon={<RiSettings3Fill />} isExpanded={isExpanded} />
+          <MenuItem label='Logout' icon={<RiLogoutBoxRLine/>} isExpanded={isExpanded}  onClick={logout} />
+        </div>
       </IconContext.Provider>
     </div>
   );
