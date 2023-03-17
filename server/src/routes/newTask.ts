@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
 import authenticateJwtToken from '../middleware/authenticationJwtToken';
-import { getDataPost } from '../db/database';
+import getDataPost from '../db/database';
 
 const newTaskRouter: Router = Router();
 

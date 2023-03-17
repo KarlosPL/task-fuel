@@ -5,12 +5,13 @@ interface Task {
   task_name: string;
   description: string;
   date_created: string;
-  deadline: string;
-  status: 'To do' | 'In progress' | 'Completed';
-  priority: 'low' | 'normal' | 'high' | 'critical';
-  tags: string[];
-  reminder: string;
-  isImportant: boolean;
+  deadline: string | null;
+  status: 'To Do' | 'In Progress' | 'Completed';
+  priority: 'Low' | 'Normal' | 'High';
+  tags: string;
+  reminder: string | null;
+  isImportant: number;
+  isDeleted: number;
   userID: string;
 }
 
@@ -27,4 +28,4 @@ const getUserTasks = (userID: string): Promise<Task[]> => {
   });
 };
 
-export { getUserTasks };
+export default getUserTasks;

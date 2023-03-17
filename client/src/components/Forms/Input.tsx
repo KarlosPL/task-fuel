@@ -1,6 +1,6 @@
 import React from 'react';
 
-type InputProps = {
+interface InputProps {
   type: string;
   name: string;
   label: string;

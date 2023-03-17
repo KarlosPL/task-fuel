@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express';
-import { getDataPost } from '../db/database';
+import getDataPost  from '../db/database';
 
 const tasksRouter: Router = Router({ mergeParams: true });
 
@@ -9,11 +9,14 @@ tasksRouter.patch('/:id', async (req: Request, res: Response) => {
 
     const query = 'UPDATE tasks SET isDeleted = ? WHERE taskId = ?';
     const values = [1, id];
-    await getDataPost(query, values);
+
+    const result = await getDataPost(query, values);
+    if (result.affectedRows === 0) return res.status(404).send({ message: 'Task not found' });
+    
     res.status(200).send({ message: 'Task deleted successfully' });
   } catch (error) {
     console.error(error);
-    res.status(500).send({ message: 'Error deleting task' });
+    res.status(500).send({ message: 'Error while deleting task' });
   }
 });
 

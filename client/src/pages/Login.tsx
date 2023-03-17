@@ -5,11 +5,12 @@ import SubmitButton from '../components/Forms/SubmitButton';
 import Section from '../components/Forms/Section';
 import { RiShieldUserFill } from 'react-icons/ri';
 import Redirect from '../components/Forms/Redirect';
-import '../assets/styles/pages/LoginAndRegister.scss';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
-import background from "../assets/images/landscape1.jpg";
 import DisplayError from '../services/utils/DisplayError';
 import axios from 'axios';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
+import background from "../assets/images/landscape1.jpg";
+import '../assets/styles/pages/LoginAndRegister.scss';
+
 
 interface LoginValues {
   email: string;

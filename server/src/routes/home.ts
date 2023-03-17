@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
-import { getUserTasks } from '../middleware/getUserTasks';
 import authenticateJwtToken from '../middleware/authenticationJwtToken';
+import getUserTasks from '../middleware/getUserTasks';
 
 const homeRouter: Router = Router();
 

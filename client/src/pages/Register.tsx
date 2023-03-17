@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { RiShieldUserLine } from 'react-icons/ri';
 import Field from '../components/Forms/Field';
 import Header from '../components/Forms/Header';
 import SubmitButton from '../components/Forms/SubmitButton';
 import Section from '../components/Forms/Section';
-import { RiShieldUserLine } from 'react-icons/ri';
 import Redirect from '../components/Forms/Redirect';
-import { useNavigate } from 'react-router-dom';
-import '../assets/styles/pages/LoginAndRegister.scss';
-import background from '../assets/images/landscape2.jpg';
 import DisplayError from '../services/utils/DisplayError';
-import axios from 'axios';
+import background from '../assets/images/landscape2.jpg';
+import '../assets/styles/pages/LoginAndRegister.scss';
+
 
 interface RegisterValues {
   username: string;

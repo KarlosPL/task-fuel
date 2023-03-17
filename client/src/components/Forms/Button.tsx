@@ -1,6 +1,6 @@
 import React from "react";
 
-type ButtonProps = {
+interface ButtonProps {
   type: "submit" | "reset" | "button";
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   children: React.ReactNode;
@@ -8,9 +8,7 @@ type ButtonProps = {
 
 const Button: React.FC<ButtonProps> = ({ type, onClick, children }) => {
   return (
-    <button type={type} onClick={onClick}>
-      {children}
-    </button>
+    <button type={type} onClick={onClick}>{children}</button>
   );
 };
 
