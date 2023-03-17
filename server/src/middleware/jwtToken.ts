@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
 const env = require('dotenv');
+const jwt = require('jsonwebtoken');
 env.config();
 
 export default function generateJWT<T extends Record<string, any>>(user: T): string {

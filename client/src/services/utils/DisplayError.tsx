@@ -1,6 +1,10 @@
 import React from 'react';
 
-const DisplayError: React.FC <{ error: string }> = ({ error }) => {
+interface Props {
+  error: string;
+}
+
+const DisplayError: React.FC <Props> = ({ error }) => {
   return (
     <span className='text-red-600'>{error}</span>
   )

@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import DisplayTask from './DisplayTask';
 import { MdOutlineAddBox } from 'react-icons/md';
 import AddTask from './AddTask';
+import DisplayTask from './DisplayTask';
+import TaskType from '../../types/TaskType';
 import '../../assets/styles/Dashboard/Tasks.scss';
 
 const Tasks: React.FC = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState<TaskType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {

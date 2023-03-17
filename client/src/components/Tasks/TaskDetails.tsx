@@ -1,23 +1,12 @@
 import React from 'react';
-import formatDateTime from '../../services/utils/formatDateTime';
-import { TbTags } from 'react-icons/tb';
 import { FcHighPriority, FcMediumPriority, FcLowPriority } from 'react-icons/fc';
+import { TbTags } from 'react-icons/tb';
+import TaskType from '../../types/TaskType';
+import formatDateTime from '../../services/utils/formatDateTime';
 
-interface Task {
-  taskId: number;
-  task_name: string;
-  description: string;
-  date_created: string;
-  deadline: string;
-  status: string;
-  priority: string;
-  tags: string;
-  reminder: string;
-  isImportant: number;
-}
 
 interface DisplayTaskProp {
-  task: Task;
+  task: TaskType;
 }
 
 const TaskDetails: React.FC<DisplayTaskProp> = ({ task }) => {

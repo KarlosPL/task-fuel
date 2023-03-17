@@ -1,26 +1,15 @@
-import React, { useState, ChangeEventHandler } from 'react';
+import React, { ChangeEventHandler, useState } from 'react';
 import uniqid from 'uniqid';
+import TaskType from '../../types/TaskType';
 import '../../assets/styles/Dashboard/AddTask.scss';
 
-interface Task {
-  taskId: string;
-  task_name: string;
-  description: string;
-  date_created: string;
-  deadline: string | null;
-  status: string;
-  priority: string;
-  tags: string;
-  reminder: string | null;
-  isImportant: number;
-}
 
 interface Props {
-  onAddTask: (newTask: Task) => void;
+  onAddTask: (newTask: TaskType) => void;
 }
 
 const AddTask: React.FC<Props> = ({ onAddTask }) => {
-  const [task, setTask] = useState<Task>({
+  const [task, setTask] = useState<TaskType>({
     taskId: `${uniqid()}`,
     task_name: '',
     description: '',
@@ -31,6 +20,7 @@ const AddTask: React.FC<Props> = ({ onAddTask }) => {
     tags: '',
     reminder: null,
     isImportant: 0,
+    isDeleted: 0,
   });
 
   const handleInputChange = (
@@ -61,6 +51,7 @@ const AddTask: React.FC<Props> = ({ onAddTask }) => {
         tags: '',
         reminder: null,
         isImportant: 0,
+        isDeleted: 0,
       });
     }
   };

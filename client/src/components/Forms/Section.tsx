@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface SectionProps {
-    id: number;
+  id: number;
   children: React.ReactNode;
 }
 

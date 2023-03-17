@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "./Input";
 
-type FormFieldProps = {
+interface FormFieldProps {
   type: string;
   name: string;
   label: string;

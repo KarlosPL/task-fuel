@@ -1,5 +1,5 @@
 import React from 'react'
-import Tasks from './Tasks';
+import Tasks from '../Tasks/Tasks';
 import '../../assets/styles/pages/Home.scss';
 
 const HelloPage: React.FC = () => {

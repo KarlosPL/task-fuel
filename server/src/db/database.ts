@@ -9,4 +9,4 @@ const getDataPost = (q: string, values: any[] = []): Promise<any> => {
   });
 };
 
-export { getDataPost };
+export default getDataPost;

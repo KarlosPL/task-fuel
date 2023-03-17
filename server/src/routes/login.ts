@@ -1,9 +1,9 @@
-import express, { Request, Response } from 'express';
+import { Request, Response, Router } from 'express';
 import bcrypt from 'bcrypt';
-import { getDataPost } from '../db/database';
 import generateJWT from '../middleware/jwtToken';
+import getDataPost  from '../db/database';
 
-const loginRouter = express.Router();
+const loginRouter: Router = Router();
 
 interface User {
   email: string;
@@ -15,15 +15,19 @@ loginRouter.post('/', async (req: Request, res: Response) => {
   
   if (!(email && password))
     return res.status(400).json({ mesage: 'Please fill all inputs to log in', success: false });
+    
   try {
     const users = await getDataPost('SELECT * FROM users WHERE email = ?', [email]);
 
-    if (users.length === 0) return res.status(401).json({ message: 'Invalid email or password', success: false });
+    if (users.length === 0) 
+      return res.status(401).json({ message: 'Invalid email or password', success: false });
 
     const user = users[0];
     
     const match = await bcrypt.compare(password, user.password);
-    if (!match) return res.status(401).json({ message: 'Invalid password', success: false });
+
+    if (!match) 
+      return res.status(401).json({ message: 'Invalid password', success: false });
     
     const token = generateJWT({ id: user.id, name: user.name });
     
