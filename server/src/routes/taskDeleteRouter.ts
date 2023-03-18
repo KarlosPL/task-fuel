@@ -1,9 +1,9 @@
 import { Request, Response, Router } from 'express';
 import getDataPost  from '../db/database';
 
-const tasksRouter: Router = Router({ mergeParams: true });
+const taskDeleteRouter: Router = Router({ mergeParams: true });
 
-tasksRouter.patch('/:id', async (req: Request, res: Response) => {
+taskDeleteRouter.patch('/:id', async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
@@ -20,4 +20,4 @@ tasksRouter.patch('/:id', async (req: Request, res: Response) => {
   }
 });
 
-export default tasksRouter;
+export default taskDeleteRouter;
