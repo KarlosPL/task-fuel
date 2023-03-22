@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DisplayTask from '../Tasks/DisplayTask';
 import TaskType from '../../types/TaskType';
+import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import '../../assets/styles/Dashboard/Tasks.scss';
 
 const DeletedTasks: React.FC = () => {
@@ -33,6 +34,9 @@ const DeletedTasks: React.FC = () => {
     <div className="Tasks">
       <div className="TasksHeader flex items-center justify-between">
         <h1>Deleted tasks</h1>
+        <p className='flex items-center gap-x-3 font-medium text-lg p-3 text-red-500 rounded-lg'>
+          <HiOutlineExclamationCircle className='w-10 h-auto' /> Each task is deleted after 7 days of deletion
+        </p>
       </div>
       <div className="TasksContent relative">
         {isLoading ? (
