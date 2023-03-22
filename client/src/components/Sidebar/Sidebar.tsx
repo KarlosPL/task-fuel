@@ -15,8 +15,17 @@ import {
 import logout from './Logout';
 import '../../assets/styles/Sidebar/Sidebar.scss';
 
-const Sidebar: React.FC = () => {
+interface SidebarProps {
+  handleTabChange: (tab: string) => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ handleTabChange }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleTabClick = (tabName: string) => {
+    handleTabChange(tabName);
+    localStorage.setItem('activeTab', tabName);
+  };
 
   const handleMouseEnter = () => {
     setIsExpanded(true);
@@ -35,17 +44,18 @@ const Sidebar: React.FC = () => {
       <IconContext.Provider value={{ color: 'white' }}>
         <MenuItem logo icon={<RiListSettingsFill />} />
         <div className="sidebar-menu-collapse">
-          <MenuItem label="Today" icon={<RiTaskFill />} isExpanded={isExpanded} />
+          <MenuItem label="Today" icon={<RiTaskFill />} isExpanded={isExpanded} onClick={() => handleTabClick('Today')} />
 
           <Submenu title="Calendar" icon={<RiCalendarTodoFill /> } isExpanded={isExpanded}>
+            <MenuItem label="Show All" isSubmenu onClick={() => handleTabClick('Calendar')}/>
             <MenuItem label="Monthly View" isSubmenu />
             <MenuItem label="Weekly View" isSubmenu />
             <MenuItem label="Daily View" isSubmenu />
           </Submenu>
 
-          <MenuItem label="Important" icon={<RiStarFill />} isExpanded={isExpanded} />
-          <MenuItem label="Completed" icon={<RiCheckDoubleFill />} isExpanded={isExpanded} />
-          <MenuItem label="Rubbish bin" icon={<RiDeleteBin6Fill />} isExpanded={isExpanded} />
+          <MenuItem label="Important" icon={<RiStarFill />} isExpanded={isExpanded} onClick={() => handleTabClick('Important')} />
+          <MenuItem label="Completed" icon={<RiCheckDoubleFill />} isExpanded={isExpanded} onClick={() => handleTabClick('Completed')} />
+          <MenuItem label="Rubbish bin" icon={<RiDeleteBin6Fill />} isExpanded={isExpanded} onClick={() => handleTabClick('Deleted')} />
         </div>
 
         <div className="sidebar-footer-collapse flex flex-col gap-y-1">
